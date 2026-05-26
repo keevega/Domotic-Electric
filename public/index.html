@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .nav-glass {
+            background:
+                linear-gradient(90deg, rgba(45, 52, 54, 0.94), rgba(45, 52, 54, 0.72)),
+                rgba(45, 52, 54, 0.8);
+            backdrop-filter: blur(16px) saturate(130%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(245, 246, 250, 0.94));
+            border: 1px solid rgba(45, 52, 54, 0.08);
+        }
+
+        .service-slide {
+            display: none;
+        }
+
+        .service-slide.is-active {
+            display: block;
+            animation: service-fade 220ms ease-out;
+        }
+
+        @keyframes service-fade {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-line {
+            display: block;
+            width: 1.5rem;
+            height: 2px;
+            border-radius: 999px;
+            background: white;
+            transition: transform 180ms ease, opacity 180ms ease;
+        }
+
+        .menu-open .menu-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-open .menu-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-open .menu-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .whatsapp-float {
+            animation: whatsapp-breathe 2.4s ease-in-out infinite;
+            box-shadow: 0 16px 34px rgba(18, 140, 126, 0.38);
+        }
+
+        .whatsapp-float::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 999px;
+            border: 2px solid rgba(37, 211, 102, 0.38);
+            animation: whatsapp-ring 2.4s ease-out infinite;
+        }
+
+        @keyframes whatsapp-breathe {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-4px) scale(1.04);
+            }
+        }
+
+        @keyframes whatsapp-ring {
+            0% {
+                opacity: 0.75;
+                transform: scale(0.78);
+            }
+
+            80%, 100% {
+                opacity: 0;
+                transform: scale(1.28);
+            }
+        }
+    </style>
+    <title>Domotic & Electric</title>
+</head>
+<body class="bg-[#2D3436] text-[#2D3436]">
+    <header class="fixed top-0 left-0 z-50 w-full">
+        <nav class="nav-glass mx-auto flex h-20 w-full items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Navegacion principal">
+            <a href="#inicio" class="flex items-center gap-3" aria-label="Domotic & Electric inicio">
+                <img
+                    src="./media/logo.png"
+                    alt="Domotic & Electric"
+                    class="h-14 w-auto object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.45)]"
+                >
+                <span class="text-2xl font-bold  text-emerald-600">Domotic & Electric</span>
+            </a>
+
+            <div class="hidden items-center gap-8 text-sm font-semibold uppercase tracking-wide text-white/80 md:flex">
+                <a class="transition hover:text-white" href="#servicios">Servicios</a>
+                <a class="transition hover:text-white" href="#soluciones">Cobertura</a>
+                <a class="transition hover:text-white" href="#contacto">Contacto</a>
+            </div>
+
+            <button
+                id="menuButton"
+                class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 transition hover:bg-white/18 md:hidden"
+                type="button"
+                aria-label="Abrir menu"
+                aria-controls="mobileMenu"
+                aria-expanded="false"
+            >
+                <span class="flex flex-col gap-[5px]">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </span>
+            </button>
+        </nav>
+
+        <div id="mobileMenu" class="nav-glass hidden border-t border-white/10 px-5 py-5 md:hidden">
+            <div class="flex flex-col gap-4 text-sm font-semibold uppercase tracking-wide text-white/85">
+                <a class="rounded-lg text-center px-2 py-2 transition hover:bg-white/10 hover:text-white" href="#servicios">Servicios</a>
+                <a class="rounded-lg text-center px-2 py-2 transition hover:bg-white/10 hover:text-white" href="#soluciones">Cobertura</a>
+                <a class="rounded-lg text-center px-2 py-2 transition hover:bg-white/10 hover:text-white" href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+    <section id="inicio" class="relative min-h-screen w-full overflow-hidden">
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            class="absolute top-0 left-0 w-full h-full object-cover"
+        >
+            <source src="./media/video_home.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#2D3436]/90 via-[#2D3436]/58 to-[#2D3436]/16"></div>
+        <div class="relative flex min-h-screen max-w-6xl items-center px-5 pt-24 sm:px-8 lg:mx-auto lg:px-12">
+            <div class="max-w-2xl text-white">
+                <p class="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-emerald-300">Automatizacion, seguridad y energia</p>
+                <h1 class="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">Domotic & Electric</h1>
+                <p class="mt-5 max-w-xl text-lg leading-8 text-white/88">
+                    Instalacion profesional de CCTV, redes, control electrico, accesos, iluminacion y respaldo UPS para espacios residenciales, comerciales e industriales.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="#servicios" class="rounded-full bg-[#0984E3] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-[#0877cc]">Ver servicios</a>
+                    <a href="#contacto" class="rounded-full border border-white/30 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10">Cotizar proyecto</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Seccion Nosotros -->
+    <section id="quienes-somos" class="bg-[#F5F6FA] px-5 py-20 sm:px-8 lg:px-12">
+        <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div>
+                <p class="text-xl text-center font-bold uppercase tracking-[0.22em] text-emerald-600">Quienes somos?</p>
+                <h2 class="mt-3 text-3xl font-bold text-[#2D3436] sm:text-4xl">Tecnologia, seguridad y energia con instalacion profesional.</h2>
+                <p class="mt-5 text-lg leading-8 text-[#2D3436]/72">
+                    En Domotic & Electric ayudamos a hogares, comercios e industrias a implementar soluciones confiables de videovigilancia, redes, control electrico, accesos e iluminacion. Trabajamos cada proyecto con orden, diagnostico tecnico y atencion al detalle para entregar instalaciones limpias, funcionales y listas para crecer.
+                </p>
+                <p class="mt-4 text-lg leading-8 text-[#2D3436]/72">
+                    Nuestro enfoque combina seguridad, continuidad operativa y soporte cercano, para que cada sistema instalado responda a las necesidades reales del espacio.
+                </p>
+            </div>
+
+            <div class="flex min-h-[320px] items-center justify-center rounded-lg border border-[#2D3436]/10 bg-[#F5F6FA] shadow-sm">
+                <div class="text-center">
+                    <img src="./media/logo_nosotros.png" class="rounded-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Seccion Servicios -->
+    <section id="servicios" class=" px-5 py-20 sm:px-8 lg:px-12">
+        <div class="mx-auto max-w-6xl">
+            <h2 class="text-xl text-center font-bold uppercase tracking-[0.22em] text-emerald-300">Servicios</h2>
+            <div class="relative mt-10">
+                <!-- Boton atras -->
+                <button id="servicePrev" class="absolute left-0 top-1/3 z-10 flex h-12 w-12 translate-y-2/3 items-center justify-center rounded-full border border-white/45 bg-emerald-500 text-emerald-950 shadow-lg backdrop-blur transition hover:border-white hover:text-emerald-200 sm:left-5 cursor-pointer" type="button" aria-label="Servicio anterior">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </button>
+                <!-- Boton sig -->
+                <button id="serviceNext" class="absolute right-0 top-1/3 z-10 flex h-12 w-12 translate-y-2/3 items-center justify-center rounded-full bg-emerald-500 text-emerald-950 shadow-lg transition hover:text-emerald-200 hover:border-white sm:right-5 cursor-pointer" type="button" aria-label="Servicio siguiente">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m9 18 6-6-6-6"/>
+                    </svg>
+                </button>
+
+                <article class="service-slide is-active" data-service-slide>
+                    <img class="h-80 w-full rounded-lg bg-[#2D3436]/5 object-cover md:h-90 lg:h-[520px] md:object-contain" src="./media/medidores.jpg" alt="Imagen de ejemplo para instalacion de medidores CFE">
+                    <div class="px-1 pt-6 sm:px-4 text-center">
+                        <h3 class="text-2xl font-bold text-white">Instalacion de medidores CFE</h3>
+                        <p class="mt-3 text-lg leading-8 text-white/70">Preparacion, montaje y conexion ordenada para medidores electricos conforme a las necesidades del inmueble.</p>
+                    </div>
+                </article>
+
+                <article class="service-slide" data-service-slide>
+                    <img class="h-80 w-full rounded-lg bg-[#2D3436]/5 object-cover md:h-90 lg:h-[520px] md:object-contain" src="./media/cableado-departamentos.jpg"  alt="Imagen de ejemplo para instalacion electrica en departamentos">
+                    <div class="px-1 pt-6 sm:px-4 text-center">
+                        <h3 class="text-2xl font-bold text-white">Instalacion electrica en departamentos</h3>
+                        <p class="mt-3 text-lg leading-8 text-white/70">Cableado, contactos, centros de carga y salidas electricas para espacios residenciales nuevos o en remodelacion.</p>
+                    </div>
+                </article>
+
+                <article class="service-slide" data-service-slide>
+                    <img class="h-80 w-full rounded-lg bg-[#2D3436]/5 object-cover md:h-90 lg:h-[520px] md:object-contain" src="./media/reflectores.jpg"  alt="Imagen de ejemplo para instalacion de reflectores">
+                    <div class="px-1 pt-6 sm:px-4 text-center">
+                        <h3 class="text-2xl font-bold text-white">Instalacion de reflectores</h3>
+                        <p class="mt-3 text-lg leading-8 text-white/70">Colocacion y conexion de reflectores para patios, fachadas, estacionamientos y zonas de seguridad.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>  
+    <!-- Seccion Cobertura -->
+    <section id="soluciones" class="bg-[#F5F6FA] px-5 py-20 text-[#2D3436] sm:px-8 lg:px-12">
+        <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+                <p class="text-xl text-center font-bold uppercase tracking-[0.22em] text-emerald-600">Cobertura</p>
+                <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Servicio en la megalopolis de Mexico.</h2>
+                <p class="mt-5 text-lg leading-8 text-[#2D3436]/72">
+                    Atendemos proyectos electricos en la megalopolis de Mexico, incluyendo CDMX y zonas conurbadas. Si tu proyecto se encuentra fuera de esta zona, contactanos para revisar la ubicacion y preparar una cotizacion a la medida.
+                </p>
+            </div>
+            <div class="rounded-lg border border-white/15 bg-white/8">
+                <img src="./media/mapa.jpg" alt="Mapa de México" class="rounded-lg">
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Pie de pagina -->
+    <footer id="contacto" class="bg-[#2D3436] px-5 py-12 text-white sm:px-8 lg:px-12">
+        <div class="mx-auto grid max-w-6xl gap-8 border-b border-white/12 pb-10 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+                <p class="text-sm font-bold uppercase tracking-[0.22em] text-emerald-300">Contactanos!</p>
+                <h2 class="mt-3 text-3xl font-bold">Listos para revisar tu proyecto.</h2>
+                <p class="mt-4 max-w-2xl text-white/70">Escribenos para cotizar instalaciones de CCTV, redes, control electrico, accesos, iluminacion o UPS.</p>
+            </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row">
+                <a href="https://www.facebook.com/domoticandelectric" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/18 px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10" aria-label="Visitar Facebook">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M14 8.2V6.9c0-.62.15-.93 1.05-.93H17V3h-2.75C11.2 3 10 4.45 10 6.65V8.2H8v3.05h2V21h4v-9.75h2.7L17 8.2h-3Z"/>
+                    </svg>
+                    Facebook
+                </a>
+                <a href="https://wa.me/5215566408620?text=Hola%2C%20me%20interesa%20cotizar%20un%20servicio%20con%20Domotic%20%26%20Electric." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-[#20bd5a]" aria-label="Contactar por WhatsApp">
+                    <svg class="h-5 w-5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                        <path d="M16.01 3.2c-7.04 0-12.76 5.7-12.76 12.72 0 2.4.67 4.74 1.95 6.76L3.12 28.8l6.36-2.03a12.75 12.75 0 0 0 6.53 1.8c7.03 0 12.75-5.7 12.75-12.73S23.04 3.2 16.01 3.2Zm0 22.96c-2.08 0-4.12-.62-5.84-1.78l-.42-.28-3.67 1.17 1.2-3.52-.3-.45a10.15 10.15 0 0 1-1.7-5.38c0-5.68 4.82-10.3 10.73-10.3 5.9 0 10.72 4.62 10.72 10.3s-4.81 10.24-10.72 10.24Zm5.88-7.68c-.32-.16-1.92-.94-2.22-1.05-.3-.11-.52-.16-.74.16-.22.32-.85 1.05-1.04 1.27-.19.22-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.86-1.6-1.91-1.8-2.23-.19-.32-.02-.5.14-.66.14-.14.32-.38.48-.58.16-.19.22-.32.32-.54.11-.22.05-.41-.03-.58-.08-.16-.74-1.78-1.01-2.43-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.58.08-.88.41-.3.32-1.16 1.13-1.16 2.75s1.19 3.2 1.35 3.42c.16.22 2.34 3.56 5.68 4.99.79.34 1.41.54 1.9.7.8.25 1.52.22 2.09.13.64-.1 1.92-.78 2.19-1.54.27-.75.27-1.4.19-1.54-.08-.13-.3-.21-.62-.37Z"/>
+                    </svg>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="mx-auto flex max-w-6xl flex-col gap-4 pt-8 text-sm text-white/68 sm:flex-row sm:items-center sm:justify-between">
+            <a href="tel:+5215566408620" class="font-semibold text-white transition hover:text-emerald-300">Telefono: +52 1 55 6640 8620</a>
+            <p>Domotic & Electric. Derechos reservados 2026.</p>
+        </div>
+    </footer>
+
+    <a
+        href="https://wa.me/5215566408620?text=Hola%2C%20me%20interesa%20cotizar%20un%20servicio%20con%20Domotic%20%26%20Electric."
+        class="whatsapp-float fixed bottom-5 right-5 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white transition hover:bg-[#20bd5a] focus:outline-none focus:ring-4 focus:ring-[#25D366]/35"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+    >
+        <svg class="relative h-9 w-9" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+            <path d="M16.01 3.2c-7.04 0-12.76 5.7-12.76 12.72 0 2.4.67 4.74 1.95 6.76L3.12 28.8l6.36-2.03a12.75 12.75 0 0 0 6.53 1.8c7.03 0 12.75-5.7 12.75-12.73S23.04 3.2 16.01 3.2Zm0 22.96c-2.08 0-4.12-.62-5.84-1.78l-.42-.28-3.67 1.17 1.2-3.52-.3-.45a10.15 10.15 0 0 1-1.7-5.38c0-5.68 4.82-10.3 10.73-10.3 5.9 0 10.72 4.62 10.72 10.3s-4.81 10.24-10.72 10.24Zm5.88-7.68c-.32-.16-1.92-.94-2.22-1.05-.3-.11-.52-.16-.74.16-.22.32-.85 1.05-1.04 1.27-.19.22-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.86-1.6-1.91-1.8-2.23-.19-.32-.02-.5.14-.66.14-.14.32-.38.48-.58.16-.19.22-.32.32-.54.11-.22.05-.41-.03-.58-.08-.16-.74-1.78-1.01-2.43-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.58.08-.88.41-.3.32-1.16 1.13-1.16 2.75s1.19 3.2 1.35 3.42c.16.22 2.34 3.56 5.68 4.99.79.34 1.41.54 1.9.7.8.25 1.52.22 2.09.13.64-.1 1.92-.78 2.19-1.54.27-.75.27-1.4.19-1.54-.08-.13-.3-.21-.62-.37Z"/>
+        </svg>
+    </a>
+
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuButton.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+
+            mobileMenu.classList.toggle('hidden', isOpen);
+            menuButton.classList.toggle('menu-open', !isOpen);
+            menuButton.setAttribute('aria-expanded', String(!isOpen));
+            menuButton.setAttribute('aria-label', isOpen ? 'Abrir menu' : 'Cerrar menu');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuButton.classList.remove('menu-open');
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuButton.setAttribute('aria-label', 'Abrir menu');
+            });
+        });
+
+        const serviceSlides = document.querySelectorAll('[data-service-slide]');
+        const servicePrev = document.getElementById('servicePrev');
+        const serviceNext = document.getElementById('serviceNext');
+        const serviceCounter = document.getElementById('serviceCounter');
+        let activeService = 0;
+
+        const showService = (index) => {
+            activeService = (index + serviceSlides.length) % serviceSlides.length;
+
+            serviceSlides.forEach((slide, slideIndex) => {
+                slide.classList.toggle('is-active', slideIndex === activeService);
+            });
+
+            if (serviceCounter) {
+                serviceCounter.textContent = `${activeService + 1} / ${serviceSlides.length}`;
+            }
+        };
+
+        servicePrev.addEventListener('click', () => showService(activeService - 1));
+        serviceNext.addEventListener('click', () => showService(activeService + 1));
+    </script>
+    
+</body>
+</html>
